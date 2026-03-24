@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin &mdash; Igollos Barber</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="admin-login" id="loginScreen">
+    <div class="admin-login-box">
+      <div class="logo">Igollos <span class="gold">Admin</span></div>
+      <span class="subtitle">Panel de Administracion</span>
+      <div id="loginAlert"></div>
+      <form id="loginForm" novalidate>
+        <div class="form-group" style="text-align:left">
+          <label for="adminPass">Contrasena</label>
+          <input type="password" id="adminPass" placeholder="" autocomplete="current-password">
+        </div>
+        <button type="submit" class="btn btn-gold" style="width:100%;margin-top:.5rem">Acceder</button>
+      </form>
+      <p style="margin-top:1.5rem;font-size:.8rem;color:var(--grey)"><a href="index.html" style="color:var(--grey-dark)">Volver al sitio</a></p>
+    </div>
+  </div>
+  <div class="admin-panel" id="adminPanel">
+    <div class="admin-header">
+      <div class="admin-logo">Igollos <span>Admin</span></div>
+      <div style="display:flex;gap:1rem;align-items:center">
+        <a href="index.html" class="btn btn-dark" style="padding:.5rem 1rem;font-size:.7rem">Ver Sitio</a>
+        <button class="btn btn-dark" id="logoutBtn" style="padding:.5rem 1rem;font-size:.7rem">Cerrar Sesion</button>
+      </div>
+    </div>
+    <div class="container" style="padding-top:2rem;padding-bottom:4rem">
+      <div class="strip-inner" style="margin-bottom:2rem;background:var(--black-card);border:1px solid var(--black-border);border-radius:4px" id="summaryCards">
+        <div class="strip-item"><div class="num" id="totalCount">0</div><div class="label">Total Reservas</div></div>
+        <div class="strip-item"><div class="num" id="todayCount">0</div><div class="label">Hoy</div></div>
+        <div class="strip-item"><div class="num" id="pendingCount">0</div><div class="label">Pendientes</div></div>
+        <div class="strip-item"><div class="num" id="confirmedCount">0</div><div class="label">Confirmadas</div></div>
+      </div>
+      <div class="admin-tabs">
+        <button class="admin-tab active" data-tab="bookings">Reservas</button>
+        <button class="admin-tab" data-tab="schedule">Horarios</button>
+        <button class="admin-tab" data-tab="config">Configuracion</button>
+      </div>
+      <div class="admin-section active" id="tab-bookings">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;flex-wrap:wrap;gap:1rem">
+          <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+            <button class="btn btn-dark filter-btn active" data-filter="all" style="padding:.5rem 1rem;font-size:.7rem">Todas</button>
+            <button class="btn btn-dark filter-btn" data-filter="pending" style="padding:.5rem 1rem;font-size:.7rem">Pendientes</button>
+            <button class="btn btn-dark filter-btn" data-filter="confirmed" style="padding:.5rem 1rem;font-size:.7rem">Confirmadas</button>
+            <button class="btn btn-dark filter-btn" data-filter="cancelled" style="padding:.5rem 1rem;font-size:.7rem">Canceladas</button>
+          </div>
+          <input type="date" id="filterDate" style="background:var(--black-card);border:1px solid var(--black-border);color:var(--white);padding:.5rem .8rem;border-radius:3px;font-family:inherit;font-size:.85rem">
+        </div>
+        <div id="bookingsAlert" style="margin-bottom:1rem"></div>
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead><tr><th>Cliente</th><th>Email</th><th>Servicio</th><th>Fecha</th><th>Hora</th><th>Estado</th><th>Notas</th><th>Acciones</th></tr></thead>
+            <tbody id="bookingsTableBody"><tr><td colspan="8" style="text-align:center;padding:3rem;color:var(--grey)">Cargando reservas...</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="admin-section" id="tab-schedule">
+        <p style="color:var(--grey);margin-bottom:2rem;font-size:.9rem">Configura los dias y horarios de apertura.</p>
+        <div class="schedule-grid" id="scheduleGrid"></div>
+        <div style="margin-top:2rem;text-align:right"><button class="btn btn-gold" id="saveScheduleBtn">Guardar Horarios</button></div>
+      </div>
+      <div class="admin-section" id="tab-config">
+        <div class="session-config">
+          <h4>Configuracion de Citas</h4>
+          <div class="config-row">
+            <div><div class="config-label">Duracion de Intervalo</div><div class="config-sublabel">Tiempo minimo entre citas</div></div>
+            <div class="config-input"><input type="number" id="slotDuration" value="30" min="15" max="120" step="15"><span>minutos</span></div>
+          </div>
+          <div class="config-row">
+            <div><div class="config-label">Dias con Antelacion</div><div class="config-sublabel">Maximo de dias para reservar</div></div>
+            <div class="config-input"><input type="number" id="maxDaysAhead" value="30" min="1" max="365"><span>dias</span></div>
+          </div>
+          <div class="config-row">
+            <div><div class="config-label">Tiempo Minimo Previo</div><div class="config-sublabel">Antelacion minima para reservar</div></div>
+            <div class="config-input"><input type="number" id="minNotice" value="60" min="0" max="1440"><span>minutos</span></div>
+          </div>
+        </div>
+        <div class="session-config">
+          <h4>Seguridad</h4>
+          <div class="config-row">
+            <div><div class="config-label">Nueva Contrasena de Admin</div><div class="config-sublabel">Deja vacio para mantener la actual</div></div>
+            <div class="config-input"><input type="password" id="newPassword" placeholder="Nueva contrasena" style="width:180px;text-align:left"></div>
+          </div>
+        </div>
+        <div style="text-align:right;margin-top:1rem"><button class="btn btn-gold" id="saveConfigBtn">Guardar Configuracion</button></div>
+      </div>
+    </div>
+  </div>
+  <div class="toast" id="toast"><span class="toast-icon" id="toastIcon"></span><span class="toast-message" id="toastMsg"></span></div>
+  <script src="app.js"></script>
+</body>
+</html>

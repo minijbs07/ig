@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reservar Cita &mdash; Igollos Barber</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo"><span class="logo-main">Igollos</span><span class="logo-sub">Barber &amp; Grooming</span></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="servicios.html">Servicios</a></li>
+        <li><a href="galeria.html">Galeria</a></li>
+        <li><a href="reservas.html" class="nav-cta">Reservar</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+  <div class="page-hero">
+    <div class="container">
+      <span class="overline">Sin Esperas</span>
+      <h1>Reserva tu <span class="gold">Cita</span></h1>
+      <p>Elige tu servicio y horario preferido. Confirmacion inmediata.</p>
+    </div>
+  </div>
+  <section>
+    <div class="container">
+      <div id="bookingAlert"></div>
+      <div class="booking-layout">
+        <div class="booking-form-container fade-up">
+          <h3>Nueva Reserva</h3>
+          <form id="bookingForm" novalidate>
+            <div class="form-row">
+              <div class="form-group"><label for="name">Nombre *</label><input type="text" id="name" name="name" placeholder="Tu nombre" required></div>
+              <div class="form-group"><label for="email">Email *</label><input type="email" id="email" name="email" placeholder="tu@email.com" required></div>
+            </div>
+            <div class="form-group">
+              <label for="service">Servicio *</label>
+              <select id="service" name="service" required>
+                <option value="">Selecciona un servicio...</option>
+                <option value="Corte Clasico - 10">Corte Clasico &mdash; &euro;10 (30 min)</option>
+                <option value="Corte con Degradado - 13">Corte con Degradado &mdash; &euro;13 (40 min)</option>
+                <option value="Corte Infantil - 8">Corte Infantil &mdash; &euro;8 (25 min)</option>
+                <option value="Arreglo de Barba - 8">Arreglo de Barba &mdash; &euro;8 (20 min)</option>
+                <option value="Afeitado Clasico - 12">Afeitado Clasico &mdash; &euro;12 (30 min)</option>
+                <option value="Diseno de Barba - 14">Diseno de Barba &mdash; &euro;14 (35 min)</option>
+                <option value="Servicio Completo - 15">Servicio Completo &mdash; &euro;15 (50 min)</option>
+                <option value="Experiencia Premium - 22">Experiencia Premium &mdash; &euro;22 (70 min)</option>
+                <option value="Paquete Novio - 35">Paquete Novio &mdash; &euro;35 (90 min)</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <div class="form-group"><label for="date">Fecha *</label><input type="date" id="date" name="date" required></div>
+              <div class="form-group"><label for="time">Hora *</label><select id="time" name="time" required><option value="">Selecciona una hora...</option></select></div>
+            </div>
+            <div class="form-group"><label for="notes">Notas (opcional)</label><textarea id="notes" name="notes" placeholder="Alguna preferencia especial..."></textarea></div>
+            <button type="submit" class="btn btn-gold form-submit" id="submitBtn">Confirmar Reserva</button>
+            <p class="form-notice">Recibiras confirmacion por email. Cancela con 2h de antelacion.</p>
+          </form>
+        </div>
+        <div class="booking-sidebar">
+          <div class="sidebar-card fade-up">
+            <h4>Horario</h4>
+            <ul class="hours-list" id="hoursList"><li><span class="day">Cargando...</span></li></ul>
+          </div>
+          <div class="sidebar-card fade-up">
+            <h4>Ubicacion</h4>
+            <p style="font-size:.9rem;color:var(--grey);line-height:1.7">Calle Mayor, 12<br>Madrid, 28013<br><br><a href="tel:+34612345678" style="color:var(--gold)">+34 612 345 678</a></p>
+          </div>
+          <div class="sidebar-card fade-up" id="upcomingCard">
+            <h4>Reservas del Dia</h4>
+            <div id="todayBookings"><div style="text-align:center;padding:1rem;color:var(--grey);font-size:.85rem">Cargando...</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="bookings-list fade-up" id="allBookingsSection" style="margin-top:4rem">
+        <h3>Proximas Reservas</h3>
+        <div class="booking-chips" id="bookingChips"><div style="color:var(--grey);font-size:.85rem">Cargando...</div></div>
+      </div>
+    </div>
+  </section>
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand"><div class="logo-text">Igollos</div><span class="logo-tagline">Barber &amp; Grooming</span><p>El arte del buen corte. Desde 2018.</p></div>
+        <div class="footer-col"><h4>Navegacion</h4><ul><li><a href="index.html">Inicio</a></li><li><a href="servicios.html">Servicios</a></li><li><a href="galeria.html">Galeria</a></li><li><a href="reservas.html">Reservar Cita</a></li></ul></div>
+        <div class="footer-col"><h4>Contacto</h4><address>Calle Mayor, 12<br>Madrid, 28013<br><br>+34 612 345 678<br>igollos@barber.es</address></div>
+      </div>
+      <div class="footer-bottom"><p>&copy; 2025 Igollos Barber. Todos los derechos reservados.</p></div>
+    </div>
+  </footer>
+  <div class="toast" id="toast"><span class="toast-icon" id="toastIcon"></span><span class="toast-message" id="toastMsg"></span></div>
+  <script src="app.js"></script>
+</body>
+</html>
