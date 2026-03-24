@@ -1,0 +1,8 @@
+# API folder
+
+This directory will contain the backend API endpoints.
+
+- Booking system endpoints
+- Authentication API
+- Data models
+- Database configurations
